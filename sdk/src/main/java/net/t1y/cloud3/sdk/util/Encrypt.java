@@ -68,7 +68,7 @@ public class Encrypt {
                 return null;
             }
         }
-        public static String decode(String iv,String key,String cip, String text) {
+        public static String decode(String iv,String cip,String key, String text) {
             try {
                 byte[] decodeByte = getDecoder().base64(text);
                 IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
