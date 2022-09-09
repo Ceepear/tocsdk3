@@ -4,32 +4,20 @@ import java.util.Objects;
 
 public class HttpService extends T1Service {
     private Request request;
-
     @Override
     public void close() {
         super.close();
         this.request = null;
     }
-
     public final void setRequest(Request request) {
         this.request = request;
     }
-
     public HttpService(String pKey, String sKey) {
         super(pKey, sKey);
     }
 
     public void post(final String url,final String parameter,final OnRequestCallback callback){
-        exec(()->{
-            callback.callback(Objects.requireNonNull(request).post(url, parameter));
-        });
-    }
-
-    @Deprecated
-    public void get(final String url,final OnRequestCallback callback){
-        exec(()->{
-            callback.callback(Objects.requireNonNull(request).get(url));
-        });
+        load(() -> callback.callback(request.post(url,parameter)));
     }
 
     public interface Request{

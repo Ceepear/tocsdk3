@@ -17,8 +17,8 @@ public abstract class T1Service {
     public final void post(Runnable runnable){
         this.handler.post(runnable);
     }
-    public final Future<?> exec(Runnable runnable){
-       return this.handler.exec(runnable);
+    public final void load(Runnable runnable){
+        this.handler.load(runnable);
     }
     public void close(){
         this.handler = null;

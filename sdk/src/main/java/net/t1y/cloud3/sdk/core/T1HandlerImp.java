@@ -7,7 +7,6 @@ import net.t1y.cloud3.sdk.external.handler.T1Handler;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class T1HandlerImp implements T1Handler {
     private Handler handler;
@@ -29,8 +28,15 @@ public class T1HandlerImp implements T1Handler {
         message.obj = Objects.requireNonNull(runnable);;
         this.handler.sendMessage(message);
     }
-    public Future<?> exec(Runnable runnable){
-        return this.executorService.submit(runnable);
+
+    public void load(Runnable runnable){
+        this.executorService.submit(new Runnable(){
+            @Override
+            public void run() {
+                System.out.println("load被执行！");
+                runnable.run();
+            }
+        });
     }
 
     public void close() {
