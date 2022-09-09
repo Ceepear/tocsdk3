@@ -8,6 +8,9 @@ public abstract class T1Service {
     public T1Service(String pKey,String sKey){
         this.pair = new Pair<>(pKey,sKey);
     }
+    public final String[] getKey(){
+        return new String[]{pair.first,pair.second};
+    }
     public final void initThisService(T1Handler handler){
         this.handler = handler;
     }
