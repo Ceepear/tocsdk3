@@ -20,7 +20,7 @@ public class Encrypt {
         return new Decode();
     }
     public static class Encode{
-        public static String aes(String iv,String cip,String key,String text){
+        public String aes(String iv,String cip,String key,String text){
             return Aes.encode(iv, cip, key, text);
         }
         public String base64(byte[] s){
@@ -50,7 +50,7 @@ public class Encrypt {
             }
             return android.util.Base64.decode(s,Base64.DEFAULT);
         }
-        public static String aes(String iv,String cip,String key,String text){
+        public String aes(String iv,String cip,String key,String text){
             return Aes.decode(iv, cip, key, text);
         }
     }
