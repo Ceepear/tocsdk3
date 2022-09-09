@@ -25,6 +25,7 @@ public final class T1Core {
         service1 = Objects.requireNonNull(service);
         if(!this.t1Services.containsValue(service1)){
             this.t1Services.put(service1.getClass(),service1);
+            service1.initThisService(handler);
         }
     }
 
