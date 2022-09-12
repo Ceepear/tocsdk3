@@ -1,6 +1,6 @@
 package net.t1y.cloud3.sdk.external.defaults;
 import net.t1y.cloud3.sdk.external.T1Service;
-import java.util.Objects;
+
 
 public class HttpService extends T1Service {
     private Request request;
@@ -9,15 +9,21 @@ public class HttpService extends T1Service {
         super.close();
         this.request = null;
     }
+
     public final void setRequest(Request request) {
         this.request = request;
     }
+
     public HttpService(String pKey, String sKey) {
         super(pKey, sKey);
     }
 
     public void post(final String url,final String parameter,final OnRequestCallback callback){
         load(() -> callback.callback(request.post(url,parameter)));
+    }
+
+    public String postSync(final String url,final String p){
+        return request.post(url,p);
     }
 
     public interface Request{
@@ -29,5 +35,7 @@ public class HttpService extends T1Service {
     public interface OnRequestCallback{
         void callback(String string);
     }
+
+
 
 }
